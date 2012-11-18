@@ -29,7 +29,7 @@ class Pwinty(object):
 		r = requests.request(method, self.url + resource, headers=self._headers(), params=params, data=data, files=files)
 
 		if r.status_code == 200 or r.status_code == 201:
-			if r.text:
+			if hasattr(r, 'text'):
 				return json.loads(r.text)
 			else:
 				return r.content
