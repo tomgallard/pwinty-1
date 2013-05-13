@@ -64,7 +64,7 @@ class Pwinty(object):
 		/Orders/Status (POST)
 		Delete order
 		'''
-		kwargs['status'] == "Cancelled"
+		kwargs['status'] = "Cancelled"
 		return self._rest_connect('Orders/Status', 'POST', data=kwargs)
 
 	def submit_order(self, **kwargs):
@@ -72,7 +72,7 @@ class Pwinty(object):
 		/Orders/Status (POST)
 		Submit order
 		'''
-		kwargs['status'] == "Submitted"
+		kwargs['status'] = "Submitted"
 		return self._rest_connect('Orders/Status', 'POST', data=kwargs)
 
 	def view_order_status(self, **kwargs):
