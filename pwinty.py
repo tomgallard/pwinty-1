@@ -17,9 +17,9 @@ class Pwinty(object):
 		self.merchantid = merchantid
 		
 		if sandbox:
-			self.url = "https://sandbox.pwinty.com/"
+			self.url = "https://sandbox.pwinty.com/v2"
 		else:
-			self.url = "https://api.pwinty.com/"
+			self.url = "https://api.pwinty.com/v2"
 
 	def _headers(self):
 		headers = {'X-Pwinty-MerchantId': self.merchantid, 'X-Pwinty-REST-API-Key': self.apikey}
@@ -111,54 +111,8 @@ class Pwinty(object):
 		'''
 		return self._rest_connect('Photos', 'DELETE', params=kwargs)
 
-	### /Documents operations
-	def view_document(self, **kwargs):
-		'''
-		/Documents (GET)
-		Get information about a specific document
-		'''
-		return self._rest_connect('Documents', 'GET', params=kwargs)
 
-	def add_document(self, **kwargs):
-		'''
-		/Documents (POST)
-		Add document to existing order
-		'''
-		files = {'file': open(kwargs['filename'], 'rb')}
-	
-		return self._rest_connect('Documents', 'POST', data=kwargs, files=files)
 
-	def delete_document(self, **kwargs):
-		'''
-		/Documents (DELETE)
-		Delete document from order
-		'''
-		return self._rest_connect('Documents', 'DELETE', params=kwargs)
-
-	### /Stickers operations
-	def view_sticker(self, **kwargs):
-		'''
-		/Stickers (GET)
-		Get information about specific sticker
-		'''
-		return self._rest_connect('Stickers', 'GET', params=kwargs)
-
-	def add_sticker(self, **kwargs):
-		'''
-		/Stickers (POST)
-		Add sticker to order
-		'''
-		filename = kwargs['filename']
-		files = {'file': open(filename, 'rb')}
-
-		return self._rest_connect('Stickers', 'POST', data=kwargs, files=files)
-
-	def delete_sticker(self, **kwargs):
-		'''
-		/Stickers (DELETE)
-		Delete sticker from order
-		'''
-		return self._rest_connect('Stickers', 'DELETE', params=kwargs)
 
 #class PwintyError(Exception):
 #	pass
